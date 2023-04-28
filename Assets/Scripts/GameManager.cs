@@ -13,17 +13,22 @@ public class GameManager : MonoBehaviour
 
     public Text scoreText;
 
+    public Text highScoreText;
+
     public Text livesText;
 
     public int ghostMultiplier { get; private set; } = 1;
 
     public int score { get; private set; }
 
+    public int highScore;
+
     public int lives { get; private set; }
 
     private void Start()
     {
         NewGame();
+        highScore = 0;
     }
 
     private void Update()
@@ -32,7 +37,11 @@ public class GameManager : MonoBehaviour
         {
             NewGame();
         }
+
+        // Update high score text
+        highScoreText.text = "High Score: " + highScore.ToString().PadLeft(2, '0');
     }
+
 
     private void NewGame()
     {
@@ -86,6 +95,11 @@ public class GameManager : MonoBehaviour
     {
         this.score = score;
         scoreText.text = score.ToString().PadLeft(2, '0');
+
+        if (score > highScore)
+        {
+            highScore = score;
+        }
     }
 
     public void GhostEaten(Ghost ghost)
