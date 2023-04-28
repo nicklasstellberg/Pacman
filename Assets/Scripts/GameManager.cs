@@ -21,14 +21,12 @@ public class GameManager : MonoBehaviour
 
     public int score { get; private set; }
 
-    public int highScore;
-
     public int lives { get; private set; }
 
     private void Start()
     {
+        UpdateHighScoreText();
         NewGame();
-        highScore = 0;
     }
 
     private void Update()
@@ -39,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
 
         // Update high score text
-        highScoreText.text = "High Score: " + highScore.ToString().PadLeft(2, '0');
+        UpdateHighScoreText();
     }
 
 
@@ -96,10 +94,15 @@ public class GameManager : MonoBehaviour
         this.score = score;
         scoreText.text = score.ToString().PadLeft(2, '0');
 
-        if (score > highScore)
+        if (score > PlayerPrefs.GetInt("HighScore", 0))
         {
-            highScore = score;
+            PlayerPrefs.SetInt("HighScore", score);
         }
+    }
+
+    void UpdateHighScoreText()
+    {
+        highScoreText.text = $"HighScore: {PlayerPrefs.GetInt("HighScore", 0)}";
     }
 
     public void GhostEaten(Ghost ghost)
