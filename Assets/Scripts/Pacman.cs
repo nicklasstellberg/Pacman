@@ -21,22 +21,22 @@ public class Pacman : MonoBehaviour
         rightButton.onClick.AddListener(MoveRight);
     }
 
-    private void MoveUp()
+    public void MoveUp()
     {
         this.movement.SetDirection(Vector2.up);
     }
 
-    private void MoveDown()
+    public void MoveDown()
     {
         this.movement.SetDirection(Vector2.down);
     }
 
-    private void MoveLeft()
+    public void MoveLeft()
     {
         this.movement.SetDirection(Vector2.left);
     }
 
-    private void MoveRight()
+    public void MoveRight()
     {
         this.movement.SetDirection(Vector2.right);
     }
