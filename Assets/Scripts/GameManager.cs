@@ -23,11 +23,18 @@ public class GameManager : MonoBehaviour
 
     public int lives { get; private set; }
 
+    public AudioSource siren;
+
     public AudioSource munch1;
 
     public AudioSource munch2;
 
     private AudioSource currentMunchAudio;
+
+    void Awake()
+    {
+        siren.Play();
+    }
 
     private void Start()
     {
