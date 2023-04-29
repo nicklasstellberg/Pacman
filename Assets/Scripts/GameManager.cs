@@ -23,10 +23,18 @@ public class GameManager : MonoBehaviour
 
     public int lives { get; private set; }
 
+    public AudioSource munch1;
+
+    public AudioSource munch2;
+
+    private AudioSource currentMunchAudio;
+
     private void Start()
     {
         UpdateHighScoreText();
         NewGame();
+        // Initialize currentMunchAudio to munch1
+        currentMunchAudio = munch1;
     }
 
     private void Update()
@@ -133,6 +141,10 @@ public class GameManager : MonoBehaviour
         pellet.gameObject.SetActive(false);
 
         SetScore(this.score + pellet.points);
+
+        // Play currentMunchAudio and switch to the other audio source
+        currentMunchAudio.Play();
+        currentMunchAudio = (currentMunchAudio == munch1) ? munch2 : munch1;
 
         if (!HasRemainingPellets())
         {
