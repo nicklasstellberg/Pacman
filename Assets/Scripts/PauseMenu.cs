@@ -46,6 +46,7 @@ public class PauseMenu : MonoBehaviour
         Paused = false; // Asetetaan muuttuja Paused totuusarvoksi false
     }
 
+    // Metodi käynnistää uuden pelin
     public void Restart()
     {
         SceneManager.LoadScene(1);

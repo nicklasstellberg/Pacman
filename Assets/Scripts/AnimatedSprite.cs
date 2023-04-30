@@ -22,18 +22,20 @@ public class AnimatedSprite : MonoBehaviour
 
     private void Advance()
     {
-
+        // Jos spriteRenderer ei ole näkyvissä, palautetaan
         if (!this.spriteRenderer.enabled)
         {
             return;
         }
         this.animationFrame++;
 
+        // Jos ollaan viimeisellä kuvalla ja loop on päällä, aloitetaan alusta
         if (this.animationFrame >= this.sprites.Length && this.loop)
         {
             this.animationFrame = 0;
         }
 
+        // Asetetaan seuraava kuva spriteRendererille
         if (this.animationFrame >= 0 && this.animationFrame < this.sprites.Length)
         {
             this.spriteRenderer.sprite = this.sprites[this.animationFrame];

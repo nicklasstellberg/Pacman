@@ -7,6 +7,7 @@ public class Pacman : MonoBehaviour
 {
     public Movement movement { get; private set;}
 
+    // Suunta-napit
     public Button upButton;
     public Button downButton;
     public Button leftButton;
@@ -14,16 +15,17 @@ public class Pacman : MonoBehaviour
 
     private void Awake()
     {
-        this.movement = GetComponent<Movement>();
+        this.movement = GetComponent<Movement>(); // Haetaan Movement-komponentti
+        // Lisätään kuuntelija ylös-napille, joka kutsuu MoveUp-metodia jne.
         upButton.onClick.AddListener(MoveUp);
         downButton.onClick.AddListener(MoveDown);
         leftButton.onClick.AddListener(MoveLeft);
         rightButton.onClick.AddListener(MoveRight);
     }
 
-    public void MoveUp()
+    public void MoveUp()// Metodi, joka kutsutaan ylös-nappia painettaessa jne.
     {
-        this.movement.SetDirection(Vector2.up);
+        this.movement.SetDirection(Vector2.up); // Asetetaan Movement-komponentin suunnaksi ylös jne.
     }
 
     public void MoveDown()
@@ -43,9 +45,9 @@ public class Pacman : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))// Jos painetaan "W" tai nuolta ylös jne.
         {
-            this.movement.SetDirection(Vector2.up);
+            this.movement.SetDirection(Vector2.up); // Asetetaan Movement-komponentin suunnaksi ylös jne.
         } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             this.movement.SetDirection(Vector2.down);
@@ -61,9 +63,9 @@ public class Pacman : MonoBehaviour
         this.transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward);
     }
 
-    public void ResetState()
+    public void ResetState() // Metodi, joka nollaa Pacmanin tilan ja aktivoi sen
     {
-        this.movement.ResetState();
+        this.movement.ResetState(); // Kutsutaan Movement-komponentin ResetState-metodia
         this.gameObject.SetActive(true);
     }
 }
